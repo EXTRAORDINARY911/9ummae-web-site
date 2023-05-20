@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>부리부리 사이트 </title>
+</head>
+
+<body>
+  <h1>부리부리 사이트</h1>
+
+  <!-- 검색 폼 -->
+  <form action="https://www.google.com/search" method="get">
+    <input type="text" name="q" placeholder="검색어를 입력하세요">
+    <button type="submit">검색</button>
+  </form>
+
+  <!-- 검색 결과 표시 영역 -->
+  <div id="search-results"></div>
+
+  <script>
+    // 검색 결과 표시 함수
+    function showResults(results) {
+      var resultsDiv = document.getElementById("search-results");
+      resultsDiv.innerHTML = ""; // 이전 검색 결과 삭제
+
+      for (var i = 0; i < results.length; i++) {
+        var result = results[i];
+        var resultDiv = document.createElement("div");
+
+        // 결과 링크 생성
+        var link = document.createElement("a");
+        link.href = result.url;
+        link.textContent = result.title;
+
+        // 결과 요약 생성
+        var summary = document.createElement("p");
+        summary.textContent = result.summary;
+
+        resultDiv.appendChild(link);
+        resultDiv.appendChild(summary);
+        resultsDiv.appendChild(resultDiv);
+      }
+    }
+
+    // 검색 결과 데이터 (가상의 데이터 예시)
+    var searchResults = [
+      {
+        title: "OpenAI",
+        url: "https://openai.com",
+        summary: "OpenAI is an artificial intelligence research laboratory."
+      },
+      {
+        title: "Wikipedia",
+        url: "https://www.wikipedia.org",
+        summary: "Wikipedia is a free online encyclopedia."
+      }
+    ];
+
+    // 페이지 로드 시 초기 검색 결과 표시
+    showResults(searchResults);
+  </script>
+</body>
+
+</html>
